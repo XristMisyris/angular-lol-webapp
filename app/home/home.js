@@ -9,11 +9,20 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeCtrl', ['$scope', '$interval', function($scope,$interval) {
-        var name = "Sponz";
-        $scope.name = "Sponz";
+.controller('HomeCtrl', ['$scope', '$interval', function( $scope, $interval ) {
 
-        $interval(function(){
+        $scope.regionList = [
+            {name: "NA" , value: "na" },
+            {name: "EUW" , value: "euw" },
+            {name: "EUNE" , value: "eune" },
+            {name: "BR" , value: "br" },
+            {name: "LAN" , value: "lan" },
+            {name: "LAS" , value: "las" },
+            {name: "OCE" , value: "oce" },
+            {name: "KR" , value: "kr" },
+            {name: "TR" , value: "tr" },
+            {name: "RU" , value: "ru" }
+        ];
 
-        }, 1000);
+        $scope.selRegion = $scope.regionList[0];
 }]);
