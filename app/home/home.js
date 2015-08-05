@@ -26,25 +26,20 @@ angular.module('myApp.home', ['ngRoute'])
 
         $scope.selRegion = $scope.regionList[0];
 
-        $scope.searchSummoner = function(key){
+        $scope.searchSummoner = function(){
 
-            var key = key.keyCode || key.which;
+            var data = {region : $scope.selRegion.value.toLowerCase() , name: $scope.summonerName.toLowerCase() };
 
-            if (key === 13){
-
-                var data = {region : $scope.selRegion.value.toLowerCase() , name: $scope.summonerName.toLowerCase() };
-
-                $http.post('engine.php?method=route', { class : "RiotApi", function : "getLeague", data : data }).
-                    then(function(response) {
-                        console.log(response);
-                        var id = [];
-                        angular.forEach(Object.keys(response.data), function(smnr){
-                            id.push(smnr);
-                        });
-                        $scope.leagueData = response.data[id[0]][0]["entries"];
+            $http.post('engine.php?method=route', { class : "RiotApi", function : "getLeague", data : data }).
+                then(function(response) {
+                    console.log(response);
+                    var id = [];
+                    angular.forEach(Object.keys(response.data), function(smnr){
+                        id.push(smnr);
                     });
-            }
-
+                    $scope.leagueData = response.data[id[0]][0]["entries"];
+                    $scope.hide = true;
+                });
         }
 
 }]);

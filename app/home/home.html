@@ -2,30 +2,35 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center"> LOL API </h1>
-            <div class="col-md-6 col-md-offset-2 text-center" id="summonerinput">
+            <div class="col-md-9 text-center" id="summonerinput">
                 <input type="text" class="form-control" name="summonerName" ng-model="summonerName" ng-keypress="searchSummoner($event)" maxlength="50" placeholder="Summoner Name"></input>
             </div>
             <div class="col-md-2">
                 <select class="form-control" id="regions" name="region" ng-model="selRegion" ng-options="region.name for region in regionList" ></select>
             </div>
+            <div class="col-md-1">
+                <button type="button" id="searchSum" class="btn btn-primary" ng-click="searchSummoner()">Search</button>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Wins</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="summoner in leagueData">
-                    <td>{{summoner.playerOrTeamName}}</td>
-                    <td>{{summoner.wins}}</td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="col-md-12">
+            <div class="table-responsive" ng-show="hide">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Wins</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="summoner in leagueData">
+                        <td>{{summoner.playerOrTeamName}}</td>
+                        <td>{{summoner.wins}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
