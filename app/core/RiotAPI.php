@@ -2,8 +2,7 @@
 
 class RiotAPI {
 	
-	public $data = null;
-    public $id = null;
+	private $data = null;
 
 	//loads the above private variable
 	public function load($data){
