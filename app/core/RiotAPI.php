@@ -3,6 +3,7 @@
 class RiotAPI {
 	
 	public $data = null;
+    public $id = null;
 
 	//loads the above private variable
 	public function load($data){
@@ -22,13 +23,12 @@ class RiotAPI {
 	public function getLeague(){
         $id = $this->getSummoner($this->data->region, $this->data->name);
 
-        $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.5/league/by-summoner/{$id}?api_key=" . apiKey;
+        $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.5/league/by-summoner/{$id}/entry?api_key=" . apiKey;
         $data = file_get_contents($url);
         $data = json_decode($data);
 
         return $data;
     }
-
 
 }
 

@@ -38,6 +38,8 @@ angular.module('myApp.home', ['ngRoute'])
                         id.push(smnr);
                     });
                     $scope.leagueData = response.data[id[0]][0]["entries"];
+                    $scope.tier = response.data[id[0]][0]["tier"];
+                    //console.log($scope.leagueData);
                     $scope.hide = true;
                 });
         }
