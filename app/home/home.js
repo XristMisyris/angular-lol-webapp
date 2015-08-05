@@ -9,7 +9,7 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeCtrl', ['$scope', '$interval', function( $scope, $interval ) {
+.controller('HomeCtrl', ['$scope', '$interval', '$http' , function( $scope, $interval , $http ) {
 
         $scope.regionList = [
             {name: "NA" , value: "na" },
