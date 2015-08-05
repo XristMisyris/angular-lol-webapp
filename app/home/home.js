@@ -9,6 +9,11 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeCtrl', [function() {
+.controller('HomeCtrl', ['$scope', '$interval', function($scope,$interval) {
+        var name = "Sponz";
+        $scope.name = "Sponz";
 
+        $interval(function(){
+
+        }, 1000);
 }]);
