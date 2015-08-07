@@ -10,23 +10,34 @@ class RiotAPI {
 	}
 
     private function getSummoner( $region, $name ){
-        $url = "https://{$region}.api.pvp.net/api/lol/{$region}/v1.4/summoner/by-name/{$name}?api_key=" . apiKey;
+        $url = "https://{$region}.api.pvp.net/api/lol/{$region}/v1.4/summoner/by-name/" . rawurlencode($name) . "?api_key=" . apiKey;
         $data = file_get_contents($url);
         $data = json_decode($data);
 
-        return $data->$name->id;
+        $index = preg_replace('/\s+/', '', $name);
+
+        return $data->$index;
     }
 
 
 	//your api calls and stufff
 	public function getLeague(){
-        $id = $this->getSummoner($this->data->region, $this->data->name);
-
+        $summoner = $this->getSummoner($this->data->region, $this->data->name);
+        $id = $summoner->id;
         $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.5/league/by-summoner/{$id}/entry?api_key=" . apiKey;
-        $data = file_get_contents($url);
-        $data = json_decode($data);
+        $league = file_get_contents($url);
+        $league = json_decode($league);
+        $summoner->league = $league;
+        return $summoner;
+    }
 
-        return $data;
+    public function getHistory(){
+        $summoner = $this->getSummoner($this->data->region, $this->data->name);
+        $id = $summoner->id;
+        $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.2/matchhistory/{$id}?api_key=" . apiKey;
+        $history = file_get_contents($url);
+        $history = json_decode($history);
+        return $history;
     }
 
 }

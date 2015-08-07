@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <h1 class="text-center">LOL API</h1>
             <div class="col-sm-5 col-sm-offset-2 text-center" id="summonerinput">
-                <input type="text" class="form-control" name="summonerName" ng-model="summonerName" ng-keypress="searchSummoner($event)" maxlength="50" placeholder="Summoner Name"></input>
+                <input type="text" class="form-control" name="summonerName" ng-model="summonerName" ng-keypress="searchSummoner()" maxlength="50" placeholder="Summoner Name"></input>
             </div>
             <div class="col-sm-2">
                 <select class="form-control" id="regions" name="region" ng-model="selRegion" ng-options="region.name for region in regionList" ></select>
@@ -13,30 +13,5 @@
             </div>
         </div>
     </div>
-    <div class="row" ng-show="hide">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Wins</th>
-                        <th>Losses</th>
-                        <th>Division</th>
-                        <th>LP</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="summoner in leagueData">
-                        <td>{{summoner.playerOrTeamName}}</td>
-                        <td>{{summoner.wins}}</td>
-                        <td>{{summoner.losses}}</td>
-                        <td>{{ tier }} {{summoner.division}}</td>
-                        <td>{{summoner.leaguePoints}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+
 </div>

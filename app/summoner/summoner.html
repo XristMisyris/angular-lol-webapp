@@ -1,1 +1,91 @@
-<h4> {{url}} </h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card hovercard">
+                <div class="card-background">
+                    <img class="card-bkimg" alt="" src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/profileicon/{{ profile.profileIconId }}.png">
+                </div>
+                <div class="useravatar">
+                    <img alt="" ng-src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/profileicon/{{ profile.profileIconId }}.png">
+                </div>
+                <div class="card-info">
+                    <span class="card-title">{{ profile.name }}</span>
+                </div>
+            </div>
+            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <div class="hidden-xs">Summary</div>
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab" ng-click="matchHistory()"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        <div class="hidden-xs">History</div>
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <div class="hidden-xs">Runes</div>
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <div class="hidden-xs">Masteries</div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="well">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+                        <div class="text-center">
+                            <h1>Level: {{ profile.summonerLevel }}</h1>
+                        </div>
+                        <div class="soloStats">
+                            <h2>Solo Queue Stats</h2>
+                            <p>Wins: {{ soloQ["entries"][0].wins }}</p>
+                            <p>Losses: {{ soloQ["entries"][0].losses }}</p>
+                            <p>LP: {{ soloQ["entries"][0].leaguePoints }}</p>
+                            <p>Tier: {{ soloQ.tier }} {{ soloQ["entries"][0].division }}</p>
+                            <img ng-src='img/medals/{{ soloQ.tier }}{{ soloQ["entries"][0].division }}.png'>
+                        </div>
+                        <div class="rankedTeamStats">
+                            <h2>Ranked Team Stats</h2>
+                            <p>Name: {{ rankedTeam["entries"][0].playerOrTeamName }}</p>
+                            <p>Wins: {{ rankedTeam["entries"][0].wins }}</p>
+                            <p>Losses: {{ rankedTeam["entries"][0].losses }}</p>
+                            <p>LP: {{ rankedTeam["entries"][0].leaguePoints }}</p>
+                            <p>Tier: {{ rankedTeam.tier }} {{ rankedTeam["entries"][0].division }}</p>
+                            <img ng-src='img/medals/{{ rankedTeam.tier }}{{ rankedTeam["entries"][0].division }}.png'>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade in" id="tab2">
+                        <h3>This is tab 2</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Champ ID</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="matches in History">
+                                    <td><img ng-src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/Aatrox.png">{{matches.participants[0].championId}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade in" id="tab3">
+                        <h3>This is tab 3</h3>
+                    </div>
+                    <div class="tab-pane fade in" id="tab4">
+                        <h3>This is tab 4</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
