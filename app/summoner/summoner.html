@@ -42,27 +42,34 @@
                         <div class="text-center">
                             <h1>Level: {{ profile.summonerLevel }}</h1>
                         </div>
-                        <div class="soloStats">
-                            <h2>Solo Queue Stats</h2>
-                            <p>Wins: {{ soloQ["entries"][0].wins }}</p>
-                            <p>Losses: {{ soloQ["entries"][0].losses }}</p>
-                            <p>LP: {{ soloQ["entries"][0].leaguePoints }}</p>
-                            <p>Tier: {{ soloQ.tier }} {{ soloQ["entries"][0].division }}</p>
-                            <img ng-src='img/medals/{{ soloQ.tier }}{{ soloQ["entries"][0].division }}.png'>
+                        <div class="soloStats" ng-if="soloQ['entries'][0].wins">
+                            <div class="medal-img">
+                                <img ng-src='img/medals/{{ soloQ.tier }}{{ soloQ["entries"][0].division }}.png'>
+                            </div>
+                            <div>
+                                <h2>Solo Queue Stats</h2>
+                                <p>Wins: {{ soloQ["entries"][0].wins }}</p>
+                                <p>Losses: {{ soloQ["entries"][0].losses }}</p>
+                                <p>LP: {{ soloQ["entries"][0].leaguePoints }}</p>
+                                <p>Tier: {{ soloQ.tier }} {{ soloQ["entries"][0].division }}</p>
+                            </div>
                         </div>
-                        <div class="rankedTeamStats">
-                            <h2>Ranked Team Stats</h2>
-                            <p>Name: {{ rankedTeam["entries"][0].playerOrTeamName }}</p>
-                            <p>Wins: {{ rankedTeam["entries"][0].wins }}</p>
-                            <p>Losses: {{ rankedTeam["entries"][0].losses }}</p>
-                            <p>LP: {{ rankedTeam["entries"][0].leaguePoints }}</p>
-                            <p>Tier: {{ rankedTeam.tier }} {{ rankedTeam["entries"][0].division }}</p>
-                            <img ng-src='img/medals/{{ rankedTeam.tier }}{{ rankedTeam["entries"][0].division }}.png'>
+                        <div class="rankedTeamStats" ng-if="rankedTeam['entries'][0].wins">
+                            <div class="medal-img">
+                                <img ng-src='img/medals/{{ rankedTeam.tier }}{{ rankedTeam["entries"][0].division }}.png'>
+                            </div>
+                            <div>
+                                <h2>Ranked Team Stats</h2>
+                                <p>Name: {{ rankedTeam["entries"][0].playerOrTeamName }}</p>
+                                <p>Wins: {{ rankedTeam["entries"][0].wins }}</p>
+                                <p>Losses: {{ rankedTeam["entries"][0].losses }}</p>
+                                <p>LP: {{ rankedTeam["entries"][0].leaguePoints }}</p>
+                                <p>Tier: {{ rankedTeam.tier }} {{ rankedTeam["entries"][0].division }}</p>
+                            </div>
                         </div>
 
                     </div>
                     <div class="tab-pane fade in" id="tab2">
-                        <h3>This is tab 2</h3>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -76,11 +83,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="matches in History">
-                                        <td>{{matches.participants[0].championId}}</td>
+                                    <tr ng-repeat="matches in History" ng-class="checkResult(matches)">
+                                        <td>{{ matches.participants[0].championId }}</td>
                                         <td>{{ matches.participants[0].stats.kills }}</td>
-                                        <td>{{ matches.participants[0].stats.assists }}</td>
                                         <td>{{ matches.participants[0].stats.deaths }}</td>
+                                        <td>{{ matches.participants[0].stats.assists }}</td>
                                         <td>{{ matches.participants[0].stats.champLevel }}</td>
                                         <td>{{ matches.participants[0].stats.minionsKilled }}</td>
                                     </tr>

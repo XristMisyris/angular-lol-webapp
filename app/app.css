@@ -2,10 +2,20 @@
     margin-top: 20px;
 }
 
-.soloStats{
-
+.winner{
+    background-color: #4cae4c;
 }
 
+.looser{
+    background-color: #d43f3a;
+}
+
+.medal-img{
+    float: left;
+}
+.soloStats{
+    min-height: 180px;
+}
 
 
 .card {

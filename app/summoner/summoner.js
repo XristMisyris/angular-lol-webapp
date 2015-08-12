@@ -9,20 +9,22 @@ angular.module('myApp.summoner', ['ngRoute'])
   });
 }])
 
-.controller('SummonerCtrl', ['$scope', '$routeParams', '$log', '$http' , function($scope, $routeParams, $log, $http) {
+.controller('SummonerCtrl', ['$scope', '$routeParams', '$log', '$http', function($scope, $routeParams, $log, $http) {
 	$scope.url = $routeParams.region + "/" + $routeParams.name;
 
     $scope.matchHistory = function () {
         $http.post('engine.php?method=route', { class : "RiotApi", function : "getHistory", data : $routeParams }).
             then(function(response) {
-                console.log(response);
-
                 $scope.History = response.data.matches;
-                console.log($scope.History);
-
-
             });
-    }
+    };
+
+    $scope.checkResult = function(matches) {
+        if ( matches.participants[0].stats.winner == true )
+            return 'winner';
+        else
+            return 'looser';
+    };
 
     $http.post('engine.php?method=route', { class : "RiotApi", function : "getLeague", data : $routeParams }).
         then(function(response) {
@@ -36,7 +38,6 @@ angular.module('myApp.summoner', ['ngRoute'])
             $scope.soloQ = {entries:[{division: ""}], tier: "UNRANKED"};
             $scope.rankedTeam = {entries:[{division: ""}], tier: "UNRANKED"};
 
-
             angular.forEach(response.data.league[id],function(league){
                 if (league.queue === "RANKED_SOLO_5x5"){
                     playedSoloQ = true;
@@ -47,13 +48,6 @@ angular.module('myApp.summoner', ['ngRoute'])
                     $scope.rankedTeam = league;
                 }
             });
-
-            //console.log("Profile - ");
-            //console.log($scope.profile);
-            //console.log("Solo - ");
-            //console.log($scope.soloQ);
-            //console.log("TeamRanked - ");
-            //console.log($scope.rankedTeam);
 
         });
 }]);
