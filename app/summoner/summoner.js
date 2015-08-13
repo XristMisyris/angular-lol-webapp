@@ -13,10 +13,12 @@ angular.module('myApp.summoner', ['ngRoute'])
 	$scope.url = $routeParams.region + "/" + $routeParams.name;
 
     $scope.matchHistory = function () {
-        $http.post('engine.php?method=route', { class : "RiotApi", function : "getHistory", data : $routeParams }).
-            then(function(response) {
-                $scope.History = response.data.matches;
-            });
+        if (!$scope.History) {
+            $http.post('engine.php?method=route', {class: "RiotApi", function: "getHistory", data: $routeParams}).
+                then(function (response) {
+                    $scope.History = response.data.matches;
+                });
+        }
     };
 
     $scope.checkResult = function(matches) {

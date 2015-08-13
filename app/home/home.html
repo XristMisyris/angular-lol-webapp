@@ -2,14 +2,13 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center">LOL API</h1>
-            <div class="col-sm-5 col-sm-offset-2 text-center" id="summonerinput">
+
+            <div class="input-group col-md-offset-2 col-md-8">
                 <input type="text" class="form-control" name="summonerName" ng-model="summonerName" maxlength="50" placeholder="Summoner Name"></input>
-            </div>
-            <div class="col-sm-2">
-                <select class="form-control" id="regions" name="region" ng-model="selRegion" ng-options="region.name for region in regionList" ></select>
-            </div>
-            <div class="col-sm-2">
-                <button type="button" id="searchSum" class="btn btn-primary" ng-click="searchSummoner()">Search</button>
+                <div class="input-group-btn">
+                    <select class="form-control" id="regions" name="region" ng-model="selRegion" ng-options="region.name for region in regionList" ></select>
+                    <button type="button" id="searchSum" class="btn btn-primary" ng-click="searchSummoner()">Search</button>
+                </div>
             </div>
         </div>
     </div>

@@ -1,22 +1,25 @@
 .table-responsive{
     margin-top: 20px;
 }
-
 .winner{
     background-color: #4cae4c;
 }
-
 .looser{
     background-color: #d43f3a;
 }
-
 .medal-img{
     float: left;
 }
 .soloStats{
     min-height: 180px;
 }
-
+.input-group-btn > .form-control{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.input-group-addon, .input-group-btn{
+    width: 12%;
+}
 
 .card {
     margin-top: 20px;
