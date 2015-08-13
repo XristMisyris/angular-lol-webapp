@@ -12,15 +12,6 @@ angular.module('myApp.summoner', ['ngRoute'])
 .controller('SummonerCtrl', ['$scope', '$routeParams', '$log', '$http', function($scope, $routeParams, $log, $http) {
 	$scope.url = $routeParams.region + "/" + $routeParams.name;
 
-    $scope.matchHistory = function () {
-        if (!$scope.History) {
-            $http.post('engine.php?method=route', {class: "RiotApi", function: "getHistory", data: $routeParams}).
-                then(function (response) {
-                    $scope.History = response.data.matches;
-                });
-        }
-    };
-
     $scope.checkResult = function(matches) {
         if ( matches.participants[0].stats.winner == true )
             return 'winner';
@@ -28,7 +19,7 @@ angular.module('myApp.summoner', ['ngRoute'])
             return 'looser';
     };
 
-    $http.post('engine.php?method=route', { class : "RiotApi", function : "getLeague", data : $routeParams }).
+    $http.post('engine.php?method=route', { class : "RiotAPI", function : "getData", data : $routeParams }).
         then(function(response) {
             console.log(response);
 
@@ -39,6 +30,7 @@ angular.module('myApp.summoner', ['ngRoute'])
             $scope.profile = response.data;
             $scope.soloQ = {entries:[{division: ""}], tier: "UNRANKED"};
             $scope.rankedTeam = {entries:[{division: ""}], tier: "UNRANKED"};
+            $scope.History = response.data.history.matches;
 
             angular.forEach(response.data.league[id],function(league){
                 if (league.queue === "RANKED_SOLO_5x5"){
@@ -51,12 +43,14 @@ angular.module('myApp.summoner', ['ngRoute'])
                 }
             });
 
+            jQuery( document ).ready(function() {
+                jQuery(".btn-pref .btn").click(function () {
+                    jQuery(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+                    jQuery(this).removeClass("btn-default").addClass("btn-primary");
+                });
+            });
+
         });
 
-    jQuery( document ).ready(function() {
-        jQuery(".btn-pref .btn").click(function () {
-            jQuery(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-            jQuery(this).removeClass("btn-default").addClass("btn-primary");
-        });
-    });
+
 }]);
