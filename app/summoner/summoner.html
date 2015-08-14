@@ -4,10 +4,10 @@
         <div class="col-md-12">
             <div class="card hovercard">
                 <div class="card-background">
-                    <img class="card-bkimg" alt="" ng-src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/profileicon/{{ summoner.profileIconId }}.png">
+                    <img class="card-bkimg" alt="" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/profileicon/{{ summoner.profileIconId }}.png">
                 </div>
                 <div class="useravatar">
-                    <img alt="" ng-src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/profileicon/{{ summoner.profileIconId }}.png">
+                    <img alt="" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/profileicon/{{ summoner.profileIconId }}.png">
                 </div>
                 <div class="card-info">
                     <span class="card-title">{{ summoner.name }}</span>
@@ -15,22 +15,22 @@
             </div>
             <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                 <div class="btn-group" role="group">
-                    <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    <button type="button" id="summery" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         <div class="hidden-xs">Summary</div>
                     </button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    <button type="button" id="history" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                         <div class="hidden-xs">History</div>
                     </button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <button type="button" id="runes" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         <div class="hidden-xs">Runes</div>
                     </button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                    <button type="button" id="masteries" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
                         <div class="hidden-xs">Masteries</div>
                     </button>
                 </div>
@@ -84,7 +84,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="matches in summoner.history.matches" ng-class="{'winner': matches.participants[0].stats.winner , 'looser': !matches.participants[0].stats.winner }">
-                                        <td><img ng-src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/{{ matches.championImage }}" height="30px" style="margin-right: 5px"/>{{ matches.championName }}</td>
+                                        <td><img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/champion/{{ matches.championImage }}" height="30px" style="margin-right: 5px"/>{{ matches.championName }}</td>
                                         <td>{{ matches.participants[0].stats.kills }}</td>
                                         <td>{{ matches.participants[0].stats.deaths }}</td>
                                         <td>{{ matches.participants[0].stats.assists }}</td>

@@ -3,6 +3,7 @@
 class RiotAPI {
 	
 	private $data = null;
+    public static $version = null;
 
 	//loads the above private variable
 	public function load($data){
@@ -19,8 +20,16 @@ class RiotAPI {
         return $data->$index;
     }
 
+    private function getLatestVersion(){
+        $url = "https://ddragon.leagueoflegends.com/api/versions.json";
+        $versions = file_get_contents($url);
+        $versions = json_decode($versions);
+
+        return $versions[0];
+    }
+
     public function getChampionList(){
-        $url = "http://ddragon.leagueoflegends.com/cdn/5.15.1/data/en_US/champion.json";
+        $url = "http://ddragon.leagueoflegends.com/cdn/" . self::$version . "/data/en_US/champion.json";
         $champs = file_get_contents($url);
         $champs = json_decode($champs);
 
@@ -45,8 +54,11 @@ class RiotAPI {
 
 	//your api calls and stufff
 	public function getData(){
+
         $summoner = $this->getSummoner($this->data->region, $this->data->name);
         $id = $summoner->id;
+
+        self::$version = $summoner->latestVer = $this->getLatestVersion();
 
         $summoner->league = $this->getLeague($id);
         $summoner->history = $this->getHistory($id);
