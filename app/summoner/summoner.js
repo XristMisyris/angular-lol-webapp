@@ -9,8 +9,14 @@ angular.module('myApp.summoner', ['ngRoute'])
   });
 }])
 
-.controller('SummonerCtrl', ['$scope', '$routeParams', '$log', '$http', function($scope, $routeParams, $log, $http) {
+.controller('SummonerCtrl', ['$scope', '$routeParams', '$log', '$http', 'ChampionService', function($scope, $routeParams, $log, $http, ChampionService) {
 	$scope.url = $routeParams.region + "/" + $routeParams.name;
+
+    var ajaxData = {region: $routeParams.region, name: $routeParams.name };
+    //if we don't champion data cache, tell backend to return it
+    ajaxData.getChampionList = (Object.keys(ChampionService.championList).length == 0) ? true : false;
+
+        console.log(ajaxData);
 
     $scope.checkResult = function(matches) {
         if ( matches.participants[0].stats.winner == true )
@@ -19,38 +25,33 @@ angular.module('myApp.summoner', ['ngRoute'])
             return 'looser';
     };
 
-    $http.post('engine.php?method=route', { class : "RiotAPI", function : "getData", data : $routeParams }).
+    $http.post('engine.php?method=route', { class : "RiotAPI", function : "getData", data : ajaxData }).
         then(function(response) {
-            console.log(response);
 
             var id = response.data.id;
-            var playedSoloQ = false;
-            var playedTeamQ = false;
 
-            $scope.profile = response.data;
-            $scope.soloQ = {entries:[{division: ""}], tier: "UNRANKED"};
-            $scope.rankedTeam = {entries:[{division: ""}], tier: "UNRANKED"};
-            $scope.History = response.data.history.matches;
+            //cache Champion Details if it was requested
+            if(ajaxData.getChampionList) ChampionService.setChampionList(response.data.championList.data);
 
             angular.forEach(response.data.league[id],function(league){
                 if (league.queue === "RANKED_SOLO_5x5"){
-                    playedSoloQ = true;
-                    $scope.soloQ = league;
+                    response.data.soloQ = league;
                 }
                 if (league.queue === "RANKED_TEAM_5x5"){
-                    playedTeamQ = true;
-                    $scope.rankedTeam = league;
+                    response.data.rankedTeam = league;
                 }
             });
 
-            jQuery( document ).ready(function() {
-                jQuery(".btn-pref .btn").click(function () {
-                    jQuery(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-                    jQuery(this).removeClass("btn-default").addClass("btn-primary");
-                });
-            });
-
+            $scope.summoner = response.data;
+            console.log(response);
+            console.log($scope.summoner);
         });
 
+        jQuery( document ).ajaxComplete(function() {
+            jQuery(".btn-pref .btn").click(function () {
+                jQuery(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+                jQuery(this).removeClass("btn-default").addClass("btn-primary");
+            });
+        });
 
 }]);
