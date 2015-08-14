@@ -19,6 +19,14 @@ class RiotAPI {
         return $data->$index;
     }
 
+    public function getChampionList(){
+        $url = "http://ddragon.leagueoflegends.com/cdn/5.15.1/data/en_US/champion.json";
+        $champs = file_get_contents($url);
+        $champs = json_decode($champs);
+
+        return $champs;
+    }
+
     public function getHistory($id){
         $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.2/matchhistory/{$id}?api_key=" . apiKey;
         $history = file_get_contents($url);
@@ -42,6 +50,7 @@ class RiotAPI {
 
         $summoner->league = $this->getLeague($id);
         $summoner->history = $this->getHistory($id);
+        $summoner->championList = $this->getChampionList();
 
         return $summoner;
     }

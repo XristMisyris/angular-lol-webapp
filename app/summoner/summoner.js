@@ -12,12 +12,6 @@ angular.module('myApp.summoner', ['ngRoute'])
 .controller('SummonerCtrl', ['$scope', '$routeParams', '$log', '$http', 'ChampionService', function($scope, $routeParams, $log, $http, ChampionService) {
 	$scope.url = $routeParams.region + "/" + $routeParams.name;
 
-    var ajaxData = {region: $routeParams.region, name: $routeParams.name };
-    //if we don't champion data cache, tell backend to return it
-    ajaxData.getChampionList = (Object.keys(ChampionService.championList).length == 0) ? true : false;
-
-        console.log(ajaxData);
-
     $scope.checkResult = function(matches) {
         if ( matches.participants[0].stats.winner == true )
             return 'winner';
@@ -25,13 +19,10 @@ angular.module('myApp.summoner', ['ngRoute'])
             return 'looser';
     };
 
-    $http.post('engine.php?method=route', { class : "RiotAPI", function : "getData", data : ajaxData }).
+    $http.post('engine.php?method=route', { class : "RiotAPI", function : "getData", data : $routeParams }).
         then(function(response) {
 
             var id = response.data.id;
-
-            //cache Champion Details if it was requested
-            if(ajaxData.getChampionList) ChampionService.setChampionList(response.data.championList.data);
 
             angular.forEach(response.data.league[id],function(league){
                 if (league.queue === "RANKED_SOLO_5x5"){
@@ -42,9 +33,19 @@ angular.module('myApp.summoner', ['ngRoute'])
                 }
             });
 
+            console.log(response.data.championList.data);
+
+            if(response.data.history.matches){
+                angular.forEach(response.data.history.matches, function(match){
+                    var array = ChampionService.setArray(response.data.championList.data);
+                    match.championImage = findWithAttr( array, 'key', match.participants[0].championId).image.full;
+                    match.championName = findWithAttr( array, 'key', match.participants[0].championId).name;
+                })
+            }
+
             $scope.summoner = response.data;
             console.log(response);
-            console.log($scope.summoner);
+
         });
 
         jQuery( document ).ajaxComplete(function() {

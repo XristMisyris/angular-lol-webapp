@@ -84,7 +84,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="matches in summoner.history.matches" ng-class="{'winner': matches.participants[0].stats.winner , 'looser': !matches.participants[0].stats.winner }">
-                                        <td>{{ matches.participants[0].championId }}</td>
+                                        <td><img ng-src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/{{ matches.championImage }}" height="30px" style="margin-right: 5px"/>{{ matches.championName }}</td>
                                         <td>{{ matches.participants[0].stats.kills }}</td>
                                         <td>{{ matches.participants[0].stats.deaths }}</td>
                                         <td>{{ matches.participants[0].stats.assists }}</td>
