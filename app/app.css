@@ -59,7 +59,18 @@ header{
 .head-search{
     display: flex;
 }
-
+.head-search input{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.head-search select{
+    border-radius: 0px;
+    width: 90px;
+}
+.head-search button{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
 
 
 

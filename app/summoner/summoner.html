@@ -8,13 +8,9 @@
             <div class="col-xs-8">
                 <div class="head-right">
                     <div class="head-search" ng-controller="AppCtrl">
-
-                        <input type="text" class="form-control" name="summonerName" ng-model="data.summonerName" maxlength="50" placeholder="Summoner Name"></input>
-
+                        <input type="text" class="form-control" name="summonerName" ng-model="data.summonerName" maxlength="50" placeholder="Summoner Name"/>
                         <select class="form-control" id="regions" name="region" ng-model="data.selRegion" ng-options="region.name for region in regionList" ></select>
-
                         <button type="button" id="searchSum" class="btn btn-primary" ng-click="searchSummoner()">Search</button>
-
                     </div>
                 </div>
             </div>
