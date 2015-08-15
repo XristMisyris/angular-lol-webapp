@@ -2,13 +2,24 @@
     margin-top: 20px;
 }
 .winner{
-    background-color: #4cae4c;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    border-left-color: #00ab07;
 }
 .looser{
-    background-color: #d43f3a;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    border-left-color: #d43f3a;
 }
 .medal-img{
     float: left;
+}
+.medal-img > img{
+    height: 150px;
 }
 .soloStats{
     min-height: 180px;
@@ -20,6 +31,224 @@
 .input-group-addon, .input-group-btn{
     width: 12%;
 }
+
+
+
+.champion-image-spells{
+    position: relative;
+    display: table-cell;
+    width: 17px;
+    padding: 10px 5px 0 10px;
+    z-index: 1;
+    vertical-align: top;
+}
+.game-box{
+    display: table;
+    width: 100%;
+    height: 95px;
+    table-layout: fixed;
+}
+.champion-image{
+    width: 55px;
+    height: 55px;
+}
+.champion-image>img{
+    width: 100%;
+    -webkit-border-radius: 50%;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 50%;
+    -moz-background-clip: padding;
+    border-radius: 50%;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.champion-name{
+    margin-top: 3px;
+    width: 55px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+.spell{
+    position: absolute;
+    right: 0px;
+    margin-left: 1px;
+    width: 27px;
+    height: 27px;
+    margin: 5px 0;
+}
+.spell img{
+    width: 100%;
+    height: 100%;
+}
+.spell1{
+    top: 12px;
+}
+.spell2{
+    top: 44px;
+}
+.rawRectImage{
+    display: block;
+    position: relative;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    font-size: 0;
+    line-height: 0;
+}
+.game-stats{
+    position: relative;
+    display: table-cell;
+    width: 30px;
+    padding: 0 0 0 5px;
+    font-size: 11px;
+    line-height: auto;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+}
+.kda{
+    color: #141a1b;
+    font-size: 15px;
+    font-family: 'Open Sans','Lato',Segoe,"Segoe UI",Candara,Calibri,Helvetica,AppleSDGothic,"Apple SD Gothic Neo",AppleGothic,Dotumche,Gulimche,Arial,Tahoma,sans-serif,'Dotum';
+    font-weight: bold;
+}
+.game-stats-2{
+    display: table-cell;
+    width: 30px;
+    padding: 0 0 0 5px;
+    font-size: 14px;
+    line-height: 20px;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+}
+.items{
+    display: table-cell;
+    width: 21px;
+    padding: 0 5px;
+    vertical-align: middle;
+    font-size: 0;
+}
+.item1, .item2, .item3, .item4, .item5, .item6{
+    display: inline-block;
+    width: 32px;
+    margin: 1px;
+}
+.item1 > img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.item2 > img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.item3 > img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.item4 > img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.item5 > img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.item6 > img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.item-trinket{
+    display: table-cell;
+    width: 10px;
+    padding: 0 4px;
+    vertical-align: middle;
+    font-size: 0;
+}
+.item7{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 1px;
+    background: #7f8c8d;
+    -webkit-border-radius: 5px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 5px;
+    -moz-background-clip: padding;
+    border-radius: 5px;
+    background-clip: padding-box;
+}
+.item7 > img{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: #000;
+}
+
 
 .card {
     margin-top: 20px;

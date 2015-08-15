@@ -2,6 +2,7 @@
 <div class="container" ng-if="summoner">
     <div class="row">
         <div class="col-md-12">
+
             <div class="card hovercard">
                 <div class="card-background">
                     <img class="card-bkimg" alt="" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/profileicon/{{ summoner.profileIconId }}.png">
@@ -13,97 +14,81 @@
                     <span class="card-title">{{ summoner.name }}</span>
                 </div>
             </div>
-            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                    <button type="button" id="summery" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                        <div class="hidden-xs">Summary</div>
-                    </button>
+            <div class="col-md-4 panel panel-default">
+                <div class="text-center">
+                    <h1>Level: {{ summoner.summonerLevel }}</h1>
                 </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="history" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                        <div class="hidden-xs">History</div>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="runes" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <div class="hidden-xs">Runes</div>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="masteries" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
-                        <div class="hidden-xs">Masteries</div>
-                    </button>
-                </div>
-            </div>
-
-            <div class="well">
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="tab1">
-                        <div class="text-center">
-                            <h1>Level: {{ summoner.summonerLevel }}</h1>
-                        </div>
-                        <div class="soloStats" ng-if="summoner.soloQ['entries'][0].wins">
-                            <div class="medal-img">
-                                <img ng-src='img/medals/{{ summoner.soloQ.tier }}{{ summoner.soloQ["entries"][0].division }}.png'>
-                            </div>
-                            <div>
-                                <h2>Solo Queue Stats</h2>
-                                <p>Wins: {{ summoner.soloQ["entries"][0].wins }}</p>
-                                <p>Losses: {{ summoner.soloQ["entries"][0].losses }}</p>
-                                <p>LP: {{ summoner.soloQ["entries"][0].leaguePoints }}</p>
-                                <p>Tier: {{ summoner.soloQ.tier }} {{ summoner.soloQ["entries"][0].division }}</p>
-                            </div>
-                        </div>
-                        <div class="rankedTeamStats" ng-if="summoner.rankedTeam['entries'][0].wins">
-                            <div class="medal-img">
-                                <img ng-src='img/medals/{{ summoner.rankedTeam.tier }}{{ summoner.rankedTeam["entries"][0].division }}.png'>
-                            </div>
-                            <div>
-                                <h2>Ranked Team Stats</h2>
-                                <p>Name: {{ summoner.rankedTeam["entries"][0].playerOrTeamName }}</p>
-                                <p>Wins: {{ summoner.rankedTeam["entries"][0].wins }}</p>
-                                <p>Losses: {{ summoner.rankedTeam["entries"][0].losses }}</p>
-                                <p>LP: {{ summoner.rankedTeam["entries"][0].leaguePoints }}</p>
-                                <p>Tier: {{ summoner.rankedTeam.tier }} {{ summoner.rankedTeam["entries"][0].division }}</p>
-                            </div>
-                        </div>
-
+                <div class="soloStats" ng-if="summoner.soloQ['entries'][0].wins">
+                    <div class="medal-img">
+                        <img ng-src='img/medals/{{ summoner.soloQ.tier }}{{ summoner.soloQ["entries"][0].division }}.png'>
                     </div>
-                    <div class="tab-pane fade in" id="tab2">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Champ ID</th>
-                                        <th>K</th>
-                                        <th>D</th>
-                                        <th>A</th>
-                                        <th>Level</th>
-                                        <th>CS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="matches in summoner.history.matches" ng-class="{'winner': matches.participants[0].stats.winner , 'looser': !matches.participants[0].stats.winner }">
-                                        <td><img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/champion/{{ matches.championImage }}" height="30px" style="margin-right: 5px"/>{{ matches.championName }}</td>
-                                        <td>{{ matches.participants[0].stats.kills }}</td>
-                                        <td>{{ matches.participants[0].stats.deaths }}</td>
-                                        <td>{{ matches.participants[0].stats.assists }}</td>
-                                        <td>{{ matches.participants[0].stats.champLevel }}</td>
-                                        <td>{{ matches.participants[0].stats.minionsKilled }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div>
+                        <h4>Solo Queue Stats</h4>
+                        <p>Wins: {{ summoner.soloQ["entries"][0].wins }}</p>
+                        <p>Losses: {{ summoner.soloQ["entries"][0].losses }}</p>
+                        <p>LP: {{ summoner.soloQ["entries"][0].leaguePoints }}</p>
+                        <p>Tier: {{ summoner.soloQ.tier }} {{ summoner.soloQ["entries"][0].division }}</p>
                     </div>
-                    <div class="tab-pane fade in" id="tab3">
-                        <h3>Runes</h3>
+                </div>
+                <div class="rankedTeamStats" ng-if="summoner.rankedTeam['entries'][0].wins">
+                    <div class="medal-img">
+                        <img ng-src='img/medals/{{ summoner.rankedTeam.tier }}{{ summoner.rankedTeam["entries"][0].division }}.png'>
                     </div>
-                    <div class="tab-pane fade in" id="tab4">
-                        <h3>Masteries</h3>
+                    <div>
+                        <h4>Ranked Team Stats</h4>
+                        <p>Name: {{ summoner.rankedTeam["entries"][0].playerOrTeamName }}</p>
+                        <p>Wins: {{ summoner.rankedTeam["entries"][0].wins }}</p>
+                        <p>Losses: {{ summoner.rankedTeam["entries"][0].losses }}</p>
+                        <p>LP: {{ summoner.rankedTeam["entries"][0].leaguePoints }}</p>
+                        <p>Tier: {{ summoner.rankedTeam.tier }} {{ summoner.rankedTeam["entries"][0].division }}</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-8 panel panel-default">
+                <div class="game-box" ng-repeat="matches in summoner.history.matches" ng-class="{'winner': matches.participants[0].stats.winner , 'looser': !matches.participants[0].stats.winner }">
+                    <div class="game-type">
 
+                    </div>
+                    <div class="game-box">
+                        <div class="champion-image-spells">
+                            <div class="champion-image">
+                                <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/champion/{{ matches.championImage }}"/>
+                            </div>
+                            <div class="champion-name">
+                                {{ matches.championName }}
+                            </div>
+                            <div class="champion-spells">
+                                <div class="spell spell1">
+                                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/spell/{{ matches.spell1Id }}" />
+                                </div>
+                                <div class="spell spell2">
+                                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/spell/{{ matches.spell2Id }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-stats">
+                            <div class="kda">
+                                {{ matches.participants[0].stats.kills }} / {{ matches.participants[0].stats.deaths }} / {{ matches.participants[0].stats.assists }}
+                            </div>
+                        </div>
+                        <div class="game-stats-2">
+                            <div class="level">Level : {{ matches.participants[0].stats.champLevel }}</div>
+                            <div class="cs">CS : {{ matches.participants[0].stats.minionsKilled }}</div>
+                        </div>
+                        <div class="items">
+                            <div class="item1"><img ng-if="matches.participants[0].stats.item0" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item0 }}.png"/></div>
+                            <div class="item2"><img ng-if="matches.participants[0].stats.item1" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item1 }}.png"/></div>
+                            <div class="item3"><img ng-if="matches.participants[0].stats.item2" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item2 }}.png"/></div>
+                            <div class="item4"><img ng-if="matches.participants[0].stats.item3" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item3 }}.png"/></div>
+                            <div class="item5"><img ng-if="matches.participants[0].stats.item4" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item4 }}.png"/></div>
+                            <div class="item6"><img ng-if="matches.participants[0].stats.item5" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item5 }}.png"/></div>
+                        </div>
+                        <div class="item-trinket">
+                            <div class="item7"><img ng-if="matches.participants[0].stats.item6" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item6 }}.png"/></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
