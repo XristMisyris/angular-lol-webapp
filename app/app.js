@@ -39,10 +39,6 @@ config(['$routeProvider', function($routeProvider) {
     makeGameModeLabel = function(mode, queue){
         mode = mode.charAt(0).toUpperCase() + mode.slice(1).toLowerCase();
         switch (queue) {
-            case "RANKED_SOLO_5x5":
-                queue = "Solo Queue";
-                break;
-
             case "NORMAL_5x5_BLIND":
                 queue = "Normal 5v5 Blind Pick";
                 break;

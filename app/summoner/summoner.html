@@ -71,6 +71,9 @@
                             <div class="kda">
                                 {{ matches.participants[0].stats.kills }} / {{ matches.participants[0].stats.deaths }} / {{ matches.participants[0].stats.assists }}
                             </div>
+                            <div class="kda-ration">
+                                KDA : {{ (matches.participants[0].stats.kills + matches.participants[0].stats.assists) / matches.participants[0].stats.deaths | number : 1}}
+                            </div>
                         </div>
                         <div class="game-stats-2">
                             <div class="level">
