@@ -47,6 +47,8 @@ angular.module('myApp.summoner', ['ngRoute'])
 
                     match.spell1Id = findWithAttr( summonersArray, 'key', match.participants[0].spell1Id).image.full;
                     match.spell2Id = findWithAttr( summonersArray, 'key', match.participants[0].spell2Id).image.full;
+
+                    match.gameLabel = makeGameModeLabel(match.matchMode, match.queueType);
                 })
             }
 

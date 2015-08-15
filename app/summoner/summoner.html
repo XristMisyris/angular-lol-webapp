@@ -18,11 +18,11 @@
                 <div class="text-center">
                     <h1>Level: {{ summoner.summonerLevel }}</h1>
                 </div>
-                <div class="soloStats" ng-if="summoner.soloQ['entries'][0].wins">
-                    <div class="medal-img">
+                <div class="col-md-12" ng-if="summoner.soloQ['entries'][0].wins">
+                    <div class="medal-img col-md-4 no-padding">
                         <img ng-src='img/medals/{{ summoner.soloQ.tier }}{{ summoner.soloQ["entries"][0].division }}.png'>
                     </div>
-                    <div>
+                    <div class="col-md-8">
                         <h4>Solo Queue Stats</h4>
                         <p>Wins: {{ summoner.soloQ["entries"][0].wins }}</p>
                         <p>Losses: {{ summoner.soloQ["entries"][0].losses }}</p>
@@ -30,11 +30,11 @@
                         <p>Tier: {{ summoner.soloQ.tier }} {{ summoner.soloQ["entries"][0].division }}</p>
                     </div>
                 </div>
-                <div class="rankedTeamStats" ng-if="summoner.rankedTeam['entries'][0].wins">
-                    <div class="medal-img">
+                <div class="col-md-12" ng-if="summoner.rankedTeam['entries'][0].wins">
+                    <div class="medal-img col-md-4 no-padding">
                         <img ng-src='img/medals/{{ summoner.rankedTeam.tier }}{{ summoner.rankedTeam["entries"][0].division }}.png'>
                     </div>
-                    <div>
+                    <div class="col-md-8">
                         <h4>Ranked Team Stats</h4>
                         <p>Name: {{ summoner.rankedTeam["entries"][0].playerOrTeamName }}</p>
                         <p>Wins: {{ summoner.rankedTeam["entries"][0].wins }}</p>
@@ -45,9 +45,10 @@
                 </div>
             </div>
             <div class="col-md-8 panel panel-default">
-                <div class="game-box" ng-repeat="matches in summoner.history.matches" ng-class="{'winner': matches.participants[0].stats.winner , 'looser': !matches.participants[0].stats.winner }">
+                <div class="game-box" ng-repeat="matches in summoner.history.matches | reverse" ng-class="{'winner': matches.participants[0].stats.winner , 'looser': !matches.participants[0].stats.winner }">
                     <div class="game-type">
-
+                        {{ matches.gameLabel }}
+                        <div class="game-type-right">{{ matches.matchCreation | date:'short' }} - {{ matches.matchDuration | secondToMin }}</div>
                     </div>
                     <div class="game-box">
                         <div class="champion-image-spells">
@@ -72,8 +73,15 @@
                             </div>
                         </div>
                         <div class="game-stats-2">
-                            <div class="level">Level : {{ matches.participants[0].stats.champLevel }}</div>
-                            <div class="cs">CS : {{ matches.participants[0].stats.minionsKilled }}</div>
+                            <div class="level">
+                                Level : {{ matches.participants[0].stats.champLevel }}
+                            </div>
+                            <div class="cs">
+                                CS : {{ matches.participants[0].stats.minionsKilled }} ( {{ matches.participants[0].timeline.creepsPerMinDeltas.zeroToTen + matches.participants[0].timeline.creepsPerMinDeltas.tenToTwenty + matches.participants[0].timeline.creepsPerMinDeltas.twentyToThirty + matches.participants[0].timeline.creepsPerMinDeltas.thirtyToEnd | number : 1}} Per/Min )
+                            </div>
+                            <div class="wards">
+                                Bought {{ matches.participants[0].stats.visionWardsBoughtInGame + matches.participants[0].stats.sightWardsBoughtInGame }} wards
+                            </div>
                         </div>
                         <div class="items">
                             <div class="item1"><img ng-if="matches.participants[0].stats.item0" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/item/{{ matches.participants[0].stats.item0 }}.png"/></div>

@@ -1,5 +1,9 @@
-.table-responsive{
-    margin-top: 20px;
+.no-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.panel{
+    border-radius: 0 0 4px 4px;
 }
 .winner{
     margin: 10px 0;
@@ -15,11 +19,8 @@
     border-radius: 3px;
     border-left-color: #d43f3a;
 }
-.medal-img{
-    float: left;
-}
 .medal-img > img{
-    height: 150px;
+    height: 105px;
 }
 .soloStats{
     min-height: 180px;
@@ -33,7 +34,19 @@
 }
 
 
-
+.game-type{
+    position: relative;
+    padding: 2px 0 0 10px;
+    text-align: left;
+    font-size: 12px;
+}
+.game-type-right{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 12px;
+    text-align: right;
+}
 .champion-image-spells{
     position: relative;
     display: table-cell;
