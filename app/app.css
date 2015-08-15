@@ -34,6 +34,37 @@
 }
 
 
+/* header */
+header{
+    font-size: 18px;
+    height: 45px;
+    background-color: #3498db;
+}
+.head-right{
+    float: right;
+    padding-top: 5px;
+}
+.logo{
+    padding-top: 2px;
+    margin: 0;
+}
+.logo a{
+    color: white;
+    letter-spacing: -1px;
+}
+.logo a:hover{
+    color: white;
+    text-decoration: none;
+}
+.head-search{
+    display: flex;
+}
+
+
+
+
+
+
 .game-type{
     position: relative;
     padding: 2px 0 0 10px;

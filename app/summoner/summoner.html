@@ -1,4 +1,26 @@
 <span us-spinner="{radius:30, width:8, length: 16}"></span>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
+                <h1 class="logo"><a href="http://46.101.174.194/lol-api/app">LoL API</a></h1>
+            </div>
+            <div class="col-xs-8">
+                <div class="head-right">
+                    <div class="head-search" ng-controller="AppCtrl">
+
+                        <input type="text" class="form-control" name="summonerName" ng-model="data.summonerName" maxlength="50" placeholder="Summoner Name"></input>
+
+                        <select class="form-control" id="regions" name="region" ng-model="data.selRegion" ng-options="region.name for region in regionList" ></select>
+
+                        <button type="button" id="searchSum" class="btn btn-primary" ng-click="searchSummoner()">Search</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <div class="container" ng-if="summoner">
     <div class="row">
         <div class="col-md-12">
@@ -71,7 +93,7 @@
                             <div class="kda">
                                 {{ matches.participants[0].stats.kills }} / {{ matches.participants[0].stats.deaths }} / {{ matches.participants[0].stats.assists }}
                             </div>
-                            <div class="kda-ration">
+                            <div class="kda-ratio">
                                 KDA : {{ (matches.participants[0].stats.kills + matches.participants[0].stats.assists) / matches.participants[0].stats.deaths | number : 1}}
                             </div>
                         </div>

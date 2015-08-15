@@ -29,7 +29,48 @@ config(['$routeProvider', function($routeProvider) {
     };
 })
 
+.controller('AppCtrl', ['$rootScope', '$location', '$routeParams', function( $rootScope, $location, $routeParams) {
+    $rootScope.data = {summonerName : ""};
+    $rootScope.data = {selRegion : ""};
+
+    $rootScope.regionList = [
+        {name: "NA"},
+        {name: "EUW"},
+        {name: "EUNE"},
+        {name: "BR"},
+        {name: "LAN"},
+        {name: "LAS"},
+        {name: "OCE"},
+        {name: "KR"},
+        {name: "TR"},
+        {name: "RU"}
+    ];
+
+    $rootScope.searchSummoner = function(){
+        console.log($rootScope);
+        var data = { region: $rootScope.data.selRegion.name.toLowerCase(), name: $rootScope.data.summonerName.toLowerCase() };
+        $location.path('/summoner/' + data.region + '/' + data.name);
+    }
+
+    var findIndex = function(key){
+        var array = $rootScope.regionList;
+
+        for ( var i = 0; i < array.length; i++ ){
+            if (array[i].name == key){
+                return i;
+            }
+        }
+    }
+
+    if ($routeParams.region)
+        $rootScope.data.selRegion = $rootScope.regionList[findIndex($routeParams.region.toUpperCase())];
+    else
+        $rootScope.data.selRegion = $rootScope.regionList[0];
+
+}])
+
 .run(['$rootScope', function($rootScope){
+
     findWithAttr = function(arr, attr, value){
         for(var i = 0; i < arr.length; i++){
             if(arr[i].key == value) return arr[i];

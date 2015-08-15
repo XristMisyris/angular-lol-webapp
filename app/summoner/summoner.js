@@ -35,8 +35,6 @@ angular.module('myApp.summoner', ['ngRoute'])
                 });
             }
 
-            console.log(response.data.championList.data);
-
             if(response.data.history.matches){
                 angular.forEach(response.data.history.matches, function(match){
                     var championArray = ChampionService.setArray(response.data.championList.data);
