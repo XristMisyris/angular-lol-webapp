@@ -31,6 +31,58 @@
                 <div class="card-info">
                     <span class="card-title">{{ summoner.name }}</span>
                 </div>
+                <div class="ingame pull-right"><button type="button" class="btn btn-primary" ng-click="inGameInfo(summoner.id)">Current Game</button></div>
+            </div>
+
+
+            <div class="col-xs-12 panel panel-default ingame-result" ng-if="summoner.current.participants">
+                <div class="col-xs-6">
+                    <div class="col-xs-12 game-summoner-box" ng-repeat="summoners in summoner.current.participants">
+                        <div ng-if="summoners.teamId == 100">
+                            <div class="col-xs-2 game-champion-image">
+                                <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/champion/{{ summoners.championImage }}"/>
+                            </div>
+                            <div class="col-xs-2 game-spell-image">
+                                <div class="spell spell1">
+                                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/spell/{{ summoners.spell1Id }}" />
+                                </div>
+                                <div class="spell spell2">
+                                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/spell/{{ summoners.spell2Id }}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-8 game-summoner-name">
+                                {{ summoners.summonerName }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <div class="col-xs-12 game-summoner-box" ng-repeat="summoners in summoner.current.participants">
+                        <div ng-if="summoners.teamId == 200">
+                            <div class="col-xs-2 game-champion-image">
+                                <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/champion/{{ summoners.championImage }}"/>
+                            </div>
+                            <div class="col-xs-2 game-spell-image">
+                                <div class="spell spell1">
+                                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/spell/{{ summoners.spell1Id }}" />
+                                </div>
+                                <div class="spell spell2">
+                                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/spell/{{ summoners.spell2Id }}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-8 game-summoner-name">
+                                {{ summoners.summonerName }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 panel panel-default ingame-result" ng-if="summoner.nogame">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>{{ summoner.name }}</strong>  is not in an active game. Please try again later if the summoner is currently in game.
+                </div>
             </div>
             <div class="col-md-4 panel panel-default">
                 <div class="text-center">

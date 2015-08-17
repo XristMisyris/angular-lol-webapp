@@ -312,6 +312,45 @@ header{
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+.game-champion-image img{
+    height: 60px;
+}
+.game-spell-image > .spell1{
+    top: 0px;
+}
+.game-spell-image > .spell2{
+    top: 30px;
+}
+.game-spell-image .spell{
+    margin: 0px;
+    left: 0px;
+}
+.game-summoner-box{
+}
+.game-summoner-name{
+    line-height: 60px;
+}
+
+
+
+
+
+
+
+
 .card {
     margin-top: 20px;
     padding: 30px;
@@ -352,6 +391,14 @@ header{
     top: 15px;
     left: 0;
     right: 0;
+}
+.ingame{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+.alert-warning{
+    margin-top: 15px;
 }
 .card.hovercard .useravatar img {
     width: 100px;

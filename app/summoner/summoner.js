@@ -19,6 +19,37 @@ angular.module('myApp.summoner', ['ngRoute'])
             return 'looser';
     };
 
+    $scope.inGameInfo = function($id){
+        $routeParams.id = $id;
+        $http.post('engine.php?method=route', { class : "RiotAPI", function : "getInGameInfo", data : $routeParams }).
+            then(function(response) {
+
+
+                if ( response.data.participants ){
+                    angular.forEach(response.data.participants, function(participant){
+                        var championArray = $scope.championList;
+                        var summonersArray = $scope.summonerSpells;
+
+                        participant.championImage = findWithAttr( championArray, 'key', participant.championId).image.full;
+                        participant.championName = findWithAttr( championArray, 'key', participant.championId).name;
+
+                        participant.spell1Id = findWithAttr( summonersArray, 'key', participant.spell1Id).image.full;
+                        participant.spell2Id = findWithAttr( summonersArray, 'key', participant.spell2Id).image.full;
+                    })
+                }
+                else
+                    $scope.summoner.nogame = true;
+
+                $scope.summoner.current = response.data;
+                console.log(response);
+                console.log($scope);
+
+
+            }, function(response) {
+                console.log('error');
+            });
+    }
+
     $http.post('engine.php?method=route', { class : "RiotAPI", function : "getData", data : $routeParams }).
         then(function(response) {
 
@@ -37,8 +68,8 @@ angular.module('myApp.summoner', ['ngRoute'])
 
             if(response.data.history.matches){
                 angular.forEach(response.data.history.matches, function(match){
-                    var championArray = ChampionService.setArray(response.data.championList.data);
-                    var summonersArray = ChampionService.setArray(response.data.summonerSpells.data);
+                    var championArray = $scope.championList = ChampionService.setArray(response.data.championList.data);
+                    var summonersArray = $scope.summonerSpells = ChampionService.setArray(response.data.summonerSpells.data);
 
                     match.championImage = findWithAttr( championArray, 'key', match.participants[0].championId).image.full;
                     match.championName = findWithAttr( championArray, 'key', match.participants[0].championId).name;
@@ -51,6 +82,7 @@ angular.module('myApp.summoner', ['ngRoute'])
             }
 
             $scope.summoner = response.data;
+            console.log($scope);
             console.log(response);
 
         });

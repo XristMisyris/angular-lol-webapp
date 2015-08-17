@@ -4,6 +4,7 @@ class RiotAPI {
 	
 	private $data = null;
     public static $version = null;
+    public static $id = null;
 
 	//loads the above private variable
 	public function load($data){
@@ -44,32 +45,40 @@ class RiotAPI {
         return $champs;
     }
 
-    public function getHistory($id){
-        $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.2/matchhistory/{$id}?api_key=" . apiKey;
+    public function getHistory(){
+        $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.2/matchhistory/". self::$id ."?api_key=" . apiKey;
         $history = file_get_contents($url);
         $history = json_decode($history);
 
         return $history;
     }
 
-    public function getLeague($id){
-        $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.5/league/by-summoner/{$id}/entry?api_key=" . apiKey;
+    public function getLeague(){
+        $url = "https://" . $this->data->region . ".api.pvp.net/api/lol/" . $this->data->region . "/v2.5/league/by-summoner/". self::$id ."/entry?api_key=" . apiKey;
         $league = file_get_contents($url);
         $league = json_decode($league);
 
         return $league;
     }
 
+    public function getInGameInfo(){
+        $url = "https://" . $this->data->region . ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/". $this->data->id ."?api_key=" . apiKey;
+        $ingame = file_get_contents($url);
+        $ingame = json_decode($ingame);
+
+        return $ingame;
+    }
+
 	//your api calls and stufff
 	public function getData(){
 
         $summoner = $this->getSummoner($this->data->region, $this->data->name);
-        $id = $summoner->id;
 
         self::$version = $summoner->latestVer = $this->getLatestVersion();
+        self::$id = $summoner->id;
 
-        $summoner->league = $this->getLeague($id);
-        $summoner->history = $this->getHistory($id);
+        $summoner->league = $this->getLeague();
+        $summoner->history = $this->getHistory();
         $summoner->championList = $this->getChampionList();
         $summoner->summonerSpells = $this->getSummonerSpells();
 
