@@ -24,18 +24,23 @@ angular.module('myApp.summoner', ['ngRoute'])
         $http.post('engine.php?method=route', { class : "RiotAPI", function : "getInGameInfo", data : $routeParams }).
             then(function(response) {
 
-
                 if ( response.data.participants ){
-                    angular.forEach(response.data.participants, function(participant){
-                        var championArray = $scope.championList;
-                        var summonersArray = $scope.summonerSpells;
+                    var championArray = $scope.championList;
+                    var summonersArray = $scope.summonerSpells;
 
+                    angular.forEach(response.data.participants, function(participant){
                         participant.championImage = findWithAttr( championArray, 'key', participant.championId).image.full;
                         participant.championName = findWithAttr( championArray, 'key', participant.championId).name;
 
                         participant.spell1Id = findWithAttr( summonersArray, 'key', participant.spell1Id).image.full;
                         participant.spell2Id = findWithAttr( summonersArray, 'key', participant.spell2Id).image.full;
                     })
+
+                    angular.forEach(response.data.bannedChampions, function(bannedChampion){
+                        bannedChampion.bannedChampionImage = findWithAttr( championArray, 'key', bannedChampion.championId).image.full;
+                        bannedChampion.bannedChampionName = findWithAttr( championArray, 'key', bannedChampion.championId).name;
+                    })
+
                 }
                 else
                     $scope.summoner.nogame = true;

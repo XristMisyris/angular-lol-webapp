@@ -11,6 +11,27 @@ class RiotAPI {
 		$this->data = $data;
     }
 
+    private function getPlatform($region){
+        $regions = array(
+            "NA" => "NA1",
+            "EUW" => "EUW1",
+            "EUNE" => "EUN1",
+            "KR" => "KR",
+            "OCE" => "OC1",
+            "BR" => "BR1",
+            "LAN" => "LA1",
+            "LAS" => "LA2",
+            "RU" => "RU",
+            "TR" => "TR1"
+        );
+
+        foreach( $regions as $regionkey => $platform ){
+            if( $regionkey == strtoupper($region) ){
+                return $platform;
+            }
+        }
+    }
+
     private function getSummoner( $region, $name ){
         $url = "https://{$region}.api.pvp.net/api/lol/{$region}/v1.4/summoner/by-name/" . rawurlencode($name) . "?api_key=" . apiKey;
         $data = file_get_contents($url);
@@ -62,7 +83,7 @@ class RiotAPI {
     }
 
     public function getInGameInfo(){
-        $url = "https://" . $this->data->region . ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/". $this->data->id ."?api_key=" . apiKey;
+        $url = "https://" . $this->data->region . ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/". $this->getPlatform($this->data->region) ."/". $this->data->id ."?api_key=" . apiKey;
         $ingame = file_get_contents($url);
         $ingame = json_decode($ingame);
 

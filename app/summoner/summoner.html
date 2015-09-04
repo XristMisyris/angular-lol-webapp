@@ -36,7 +36,13 @@
 
 
             <div class="col-xs-12 panel panel-default ingame-result" ng-if="summoner.current.participants">
-                <div class="col-xs-6">
+                <div class="col-md-6">
+                    <div class="col-xs-6">
+                        <h2>Blue Team</h2>
+                    </div>
+                    <div class="bans col-xs-6">
+                        <span>Bans: </span><img ng-repeat="ban in summoner.current.bannedChampions" ng-if="ban.teamId == 100" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/champion/{{ ban.bannedChampionImage }}"/>
+                    </div>
                     <div class="col-xs-12 game-summoner-box" ng-repeat="summoners in summoner.current.participants">
                         <div ng-if="summoners.teamId == 100">
                             <div class="col-xs-2 game-champion-image">
@@ -50,14 +56,20 @@
                                     <img ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/spell/{{ summoners.spell2Id }}" />
                                 </div>
                             </div>
-                            <div class="col-xs-8 game-summoner-name">
+                            <div class="col-xs-8 game-summoner-name" ng-class="{'bold' : summoner.name == summoners.summonerName}">
                                 {{ summoners.summonerName }}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xs-6">
+                <div class="col-md-6">
+                    <div class="col-xs-6">
+                        <h2>Purple Team</h2>
+                    </div>
+                    <div class="bans col-xs-6">
+                        <span>Bans: </span><img ng-repeat="ban in summoner.current.bannedChampions" ng-if="ban.teamId == 200" ng-src="http://ddragon.leagueoflegends.com/cdn/{{ summoner.latestVer }}/img/champion/{{ ban.bannedChampionImage }}"/>
+                    </div>
                     <div class="col-xs-12 game-summoner-box" ng-repeat="summoners in summoner.current.participants">
                         <div ng-if="summoners.teamId == 200">
                             <div class="col-xs-2 game-champion-image">

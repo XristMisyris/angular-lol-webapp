@@ -1,6 +1,6 @@
 .no-padding{
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 .panel{
     border-radius: 0 0 4px 4px;
@@ -44,6 +44,10 @@ header{
     float: right;
     padding-top: 5px;
 }
+.game-champion-image{
+    padding-top: 2px;
+    margin: 0;
+}
 .logo{
     padding-top: 2px;
     margin: 0;
@@ -51,6 +55,7 @@ header{
 .logo a{
     color: white;
     letter-spacing: -1px;
+    white-space: nowrap;
 }
 .logo a:hover{
     color: white;
@@ -60,21 +65,35 @@ header{
     display: flex;
 }
 .head-search input{
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 .head-search select{
-    border-radius: 0px;
+    border-radius: 0;
     width: 90px;
 }
 .head-search button{
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
-
-
-
-
+.ingame-result{
+    padding-bottom: 20px;
+    z-index: 9999;
+}
+.bans{
+    padding-top: 20px;
+}
+.bans > img{
+    height: 30px;
+    padding-right: 2px;
+}
+.bans > span{
+    font-size: 18px;
+    vertical-align: middle;
+}
+.bold{
+    font-weight: bold;
+}
 
 .game-type{
     position: relative;
@@ -130,8 +149,7 @@ header{
 }
 .spell{
     position: absolute;
-    right: 0px;
-    margin-left: 1px;
+    right: 0;
     width: 27px;
     height: 27px;
     margin: 5px 0;
@@ -311,45 +329,29 @@ header{
     background-color: #000;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .game-champion-image img{
-    height: 60px;
+    height: 55px;
+    -webkit-border-radius: 50%;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 50%;
+    -moz-background-clip: padding;
+    border-radius: 10%;
+    background-clip: padding-box;
+    background-color: #000;
 }
 .game-spell-image > .spell1{
-    top: 0px;
+    top: 0;
 }
 .game-spell-image > .spell2{
     top: 30px;
 }
 .game-spell-image .spell{
-    margin: 0px;
-    left: 0px;
-}
-.game-summoner-box{
+    margin: 0;
+    left: 0;
 }
 .game-summoner-name{
     line-height: 60px;
 }
-
-
-
-
-
-
-
 
 .card {
     margin-top: 20px;
